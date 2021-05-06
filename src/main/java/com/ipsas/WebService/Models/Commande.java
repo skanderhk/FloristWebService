@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 public class Commande {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
     private Florist florist;
@@ -17,13 +17,17 @@ public class Commande {
     private Status status;
     @OneToMany
     private List<Bouquet> bouquetList;
+    @OneToMany
+    private List<Flower> flowerList;
     private double total;
 
-    public Commande(Florist florist, Client client, Status status, List<Bouquet> bouquetList) {
+    public Commande(Florist florist, Client client, List<Bouquet> bouquetList, List<Flower> flowerList) {
         this.florist = florist;
         this.client = client;
-        this.status = Status.NOT_SHIPPED;
+        this.status = Status.PENDING;
         this.bouquetList = bouquetList;
+        this.flowerList = flowerList;
+        this.total = setTotal();
     }
 
     public Commande() {
@@ -65,11 +69,28 @@ public class Commande {
         return total;
     }
 
-    public void setTotal() {
+    public List<Flower> getFlowerList() {
+        return flowerList;
+    }
+
+    public void setFlowerList(List<Flower> flowerList) {
+        this.flowerList = flowerList;
+    }
+
+    public double setTotal() {
         List<Bouquet> bouquetList = this.getBouquetList();
-        for (Bouquet bouquet: bouquetList){
-            this.total += bouquet.getPrice();
-        }
+        List<Flower> flowerList = this.getFlowerList();
+        if (bouquetList.size()!= 0){
+            for (Bouquet bouquet: bouquetList){
+                this.total += bouquet.getPrice();
+            }
+        }else this.total += 0;
+        if (flowerList.size()!= 0) {
+            for (Flower flower : flowerList) {
+                this.total += flower.getPrice();
+            }
+        }else this.total += 0;
+        return this.total;
     }
 
     public Status getStatus() {

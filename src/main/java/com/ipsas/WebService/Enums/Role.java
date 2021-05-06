@@ -1,5 +1,5 @@
 package com.ipsas.WebService.Enums;
 
 public enum Role {
-    ADMIN,CLIENT,Florist
+    ADMIN,CLIENT,FLORIST
 }

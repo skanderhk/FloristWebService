@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Bouquet {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
     private List<Flower> flowersList;
@@ -14,7 +14,7 @@ public class Bouquet {
 
     public Bouquet(List<Flower> flowersList) {
         this.flowersList = flowersList;
-        this.price = 0;
+        this.price = setPrice();
     }
 
     public Bouquet() {
@@ -40,10 +40,11 @@ public class Bouquet {
         return price;
     }
 
-    public void setPrice() {
+    public double setPrice() {
         List<Flower> flowersList = this.getFlowersList();
         for (Flower flower:flowersList ) {
-            this.price +=flower.getPrice();
+            this.price += flower.getPrice();
         }
+        return this.price;
     }
 }

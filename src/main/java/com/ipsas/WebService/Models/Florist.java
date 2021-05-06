@@ -3,6 +3,7 @@ package com.ipsas.WebService.Models;
 import com.ipsas.WebService.Enums.Role;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -10,16 +11,14 @@ import java.util.List;
 public class Florist extends User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     @OneToMany
     private List<Commande> commandeList;
 
-    public Florist(String firstname, String lastname, String username, String password, Role role, Long id, String name, List<Commande> commandeList) {
-        super(firstname, lastname, username, password, role);
-        this.name = name;
-        this.commandeList = commandeList;
+    public Florist(String firstname, String lastname, String username, String password) {
+        super(firstname, lastname, username, password, Role.FLORIST);
+        this.commandeList = Arrays.asList();
     }
 
     public Florist() {
@@ -33,14 +32,6 @@ public class Florist extends User {
     @Override
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Commande> getCommandeList() {

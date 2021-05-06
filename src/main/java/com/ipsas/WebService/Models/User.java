@@ -1,6 +1,7 @@
 package com.ipsas.WebService.Models;
 
 import com.ipsas.WebService.Enums.Role;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,7 +11,7 @@ import java.io.Serializable;
 @DiscriminatorValue("USER")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstname;
     private String lastname;
@@ -54,15 +55,11 @@ public class User implements Serializable {
     }
 
     public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+        return this.username;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -76,4 +73,5 @@ public class User implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
+
 }
