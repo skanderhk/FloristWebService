@@ -1,6 +1,7 @@
 package com.ipsas.WebService.Services;
 
 import com.ipsas.WebService.Models.Client;
+import com.ipsas.WebService.Models.Commande;
 import com.ipsas.WebService.Repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

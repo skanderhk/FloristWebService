@@ -1,21 +1,25 @@
 package com.ipsas.WebService.Services;
 
 import com.ipsas.WebService.Models.Bouquet;
+import com.ipsas.WebService.Models.Client;
 import com.ipsas.WebService.Models.Commande;
 import com.ipsas.WebService.Models.Flower;
 import com.ipsas.WebService.Repositories.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class CommandeService {
     private CommandeRepository commandeRepo;
+    private ClientService clientService;
 
     @Autowired
-    public CommandeService(CommandeRepository commandeRepo) {
+    public CommandeService(CommandeRepository commandeRepo, ClientService clientService) {
         this.commandeRepo = commandeRepo;
+        this.clientService = clientService;
     }
 
     public Commande addCommande(Commande C){

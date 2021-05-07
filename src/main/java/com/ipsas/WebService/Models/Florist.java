@@ -3,12 +3,13 @@ package com.ipsas.WebService.Models;
 import com.ipsas.WebService.Enums.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("Florist")
-public class Florist extends User {
+public class Florist extends User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +25,10 @@ public class Florist extends User {
     public Florist() {
     }
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -41,4 +40,5 @@ public class Florist extends User {
     public void setCommandeList(List<Commande> commandeList) {
         this.commandeList = commandeList;
     }
+
 }

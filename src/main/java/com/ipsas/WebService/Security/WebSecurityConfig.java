@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/bouquets/").hasAnyRole("CLIENT","FLORIST","ADMIN")
                 .antMatchers("/api/v1/bouquets/**").hasAnyRole("FLORIST","ADMIN")
                 .antMatchers("/api/v1/commandes/").hasAnyRole("CLIENT","FLORIST","ADMIN")
-                .antMatchers("/api/v1/commandes/**").hasAnyRole("FLORIST","ADMIN")
+                .antMatchers("/api/v1/commandes/**").hasAnyRole("CLIENT","FLORIST","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                .httpBasic();

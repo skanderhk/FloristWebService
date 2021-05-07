@@ -49,8 +49,7 @@ public class DbInit implements CommandLineRunner {
         Flower F3 = new Flower("Black",25.0);
         this.flowerService.addFlower(F3);
 
-        Commande C = new Commande(florist,client,Arrays.asList(B),Arrays.asList(F3));
-        this.commandeService.addCommande(C);
-
+        Commande commande = new Commande(florist,client,Arrays.asList(B),Arrays.asList(F3));
+        this.commandeService.addCommande(commande);
     }
 }

@@ -1,6 +1,7 @@
 package com.ipsas.WebService.Controllers;
 
 import com.ipsas.WebService.Enums.Role;
+import com.ipsas.WebService.Models.Commande;
 import com.ipsas.WebService.Models.Florist;
 import com.ipsas.WebService.Services.FloristService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,12 @@ public class FloristController {
     public ResponseEntity<Florist> findById(@PathVariable("id") Long id){
         Florist e = floristService.findOneById(id);
         return new ResponseEntity<>(e, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/commandes")
+    public ResponseEntity<List<Commande>> AllCommandes(@PathVariable("id") Long id){
+        Florist e = floristService.findOneById(id);
+        return new ResponseEntity<List<Commande>>(e.getCommandeList(), HttpStatus.OK);
     }
 
     @PostMapping ("/add")

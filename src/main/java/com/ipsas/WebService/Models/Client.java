@@ -1,14 +1,16 @@
 package com.ipsas.WebService.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ipsas.WebService.Enums.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("Client")
-public class Client extends User {
+public class Client extends User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +26,11 @@ public class Client extends User {
     public Client() {
     }
 
-    @Override
+
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }

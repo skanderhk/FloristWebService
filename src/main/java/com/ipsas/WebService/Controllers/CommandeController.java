@@ -1,9 +1,13 @@
 package com.ipsas.WebService.Controllers;
 
 import com.ipsas.WebService.Models.Commande;
+import com.ipsas.WebService.Models.Florist;
+import com.ipsas.WebService.Models.User;
 import com.ipsas.WebService.Services.CommandeService;
+import com.ipsas.WebService.Services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +16,12 @@ import java.util.List;
 @RequestMapping("/api/v1/commandes")
 public class CommandeController {
     private final CommandeService commandeService;
+    private final UserService userService;
 
-    public CommandeController(CommandeService commandeService) {
+    public CommandeController(CommandeService commandeService, UserService userService) {
         this.commandeService = commandeService;
+        this.userService = userService;
     }
-
 
     @GetMapping("/")
     public ResponseEntity<List<Commande>> index(){
