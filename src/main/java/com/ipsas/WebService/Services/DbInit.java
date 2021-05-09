@@ -34,6 +34,8 @@ public class DbInit implements CommandLineRunner {
     public void run(String... args) {
         Client client = new Client("Skander","Hkacem","SkanderHk", passwordEncoder.encode("12325135"));
         this.clientService.addClient(client);
+        Client client2 = new Client("Test","Hkacem","test", passwordEncoder.encode("12325135"));
+        this.clientService.addClient(client2);
         Florist florist = new Florist("First","Seller","Seller", passwordEncoder.encode("12325135"));
         this.floristService.addFlorist(florist);
         User admin = new User ("First","Admin","Admin", passwordEncoder.encode("12325135"), Role.ADMIN );
@@ -51,5 +53,6 @@ public class DbInit implements CommandLineRunner {
 
         Commande commande = new Commande(florist,client,Arrays.asList(B),Arrays.asList(F3));
         this.commandeService.addCommande(commande);
+        this.clientService.deleteClient(2L);
     }
 }

@@ -30,14 +30,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/v1/florists/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/clients/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/flowers/").hasAnyRole("CLIENT","FLORIST","ADMIN")
-                .antMatchers("/api/v1/flowers/**").hasAnyRole("FLORIST","ADMIN")
-                .antMatchers("/api/v1/bouquets/").hasAnyRole("CLIENT","FLORIST","ADMIN")
-                .antMatchers("/api/v1/bouquets/**").hasAnyRole("FLORIST","ADMIN")
-                .antMatchers("/api/v1/commandes/").hasAnyRole("CLIENT","FLORIST","ADMIN")
-                .antMatchers("/api/v1/commandes/**").hasAnyRole("CLIENT","FLORIST","ADMIN")
+                .mvcMatchers("/api/v1/florists/**").hasRole("ADMIN")
+                .mvcMatchers("/api/v1/clients/**").hasAnyRole("ADMIN","CLIENT")
+                .mvcMatchers("/api/v1/flowers/").hasAnyRole("CLIENT","FLORIST","ADMIN")
+                .mvcMatchers("/api/v1/flowers/**").hasAnyRole("FLORIST","ADMIN")
+                .mvcMatchers("/api/v1/bouquets/").hasAnyRole("CLIENT","FLORIST","ADMIN")
+                .mvcMatchers("/api/v1/bouquets/**").hasAnyRole("FLORIST","ADMIN")
+                .mvcMatchers("/api/v1/commandes/").hasAnyRole("CLIENT","FLORIST","ADMIN")
+                .mvcMatchers("/api/v1/commandes/**").hasAnyRole("CLIENT","FLORIST","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                .httpBasic();

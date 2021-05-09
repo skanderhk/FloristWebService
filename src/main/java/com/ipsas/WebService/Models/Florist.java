@@ -1,5 +1,6 @@
 package com.ipsas.WebService.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ipsas.WebService.Enums.Role;
 
 import javax.persistence.*;
@@ -14,7 +15,8 @@ public class Florist extends User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    @OneToMany(mappedBy = "florist")
+    @JsonIgnoreProperties(value = {"florist"})
     private List<Commande> commandeList;
 
     public Florist(String firstname, String lastname, String username, String password) {

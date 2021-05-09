@@ -1,6 +1,6 @@
 package com.ipsas.WebService.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ipsas.WebService.Enums.Status;
 
 import javax.persistence.*;
@@ -12,8 +12,12 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JoinColumn(name = "florist_id")
+    @JsonIgnoreProperties(value = {"commandeList"})
     private Florist florist;
     @ManyToOne
+    @JoinColumn(name = "client_id")
+    @JsonIgnoreProperties(value = {"commandeList"})
     private Client client;
     private Status status;
     @OneToMany

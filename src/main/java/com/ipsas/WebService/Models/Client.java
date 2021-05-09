@@ -1,9 +1,12 @@
 package com.ipsas.WebService.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ipsas.WebService.Enums.Role;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +18,8 @@ public class Client extends User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    @OneToMany(mappedBy = "client")
+    @JsonIgnoreProperties(value = {"client"})
     private List<Commande> commandeList;
 
     public Client(String firstname, String lastname, String username, String password) {
@@ -30,6 +34,7 @@ public class Client extends User implements Serializable {
     public Long getId() {
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
