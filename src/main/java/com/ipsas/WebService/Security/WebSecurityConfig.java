@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .mvcMatchers("/api-docs.html").permitAll()
                 .mvcMatchers("/api/v1/florists/**").hasRole("ADMIN")
                 .mvcMatchers("/api/v1/clients/**").hasAnyRole("ADMIN","CLIENT")
                 .mvcMatchers("/api/v1/flowers/").hasAnyRole("CLIENT","FLORIST","ADMIN")

@@ -3,6 +3,8 @@ package com.ipsas.WebService.Controllers;
 import com.ipsas.WebService.Enums.Role;
 import com.ipsas.WebService.Models.Flower;
 import com.ipsas.WebService.Services.FlowerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/flowers")
+@Tag(name = "Flowers Controller",description = "Full CRUD for Flower Model")
 public class FlowerController {
     private final FlowerService flowerService;
 
@@ -18,7 +21,7 @@ public class FlowerController {
         this.flowerService = flowerService;
     }
 
-
+    @Operation(summary = "Index",description = "Return List of all Flowers")
     @GetMapping("/")
     public ResponseEntity<List<Flower>> index(){
         List<Flower> l = flowerService.findAll();

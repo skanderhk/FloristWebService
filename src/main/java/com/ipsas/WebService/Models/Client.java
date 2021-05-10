@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.ExternalDocumentation;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Client extends User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
     @OneToMany(mappedBy = "client")
     @JsonIgnoreProperties(value = {"client"})

@@ -5,6 +5,8 @@ import com.ipsas.WebService.Models.Florist;
 import com.ipsas.WebService.Models.User;
 import com.ipsas.WebService.Services.CommandeService;
 import com.ipsas.WebService.Services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/commandes")
+@Tag(name = "Commandes Controller",description = "Full CRUD for Commande Model")
 public class CommandeController {
     private final CommandeService commandeService;
     private final UserService userService;
@@ -23,6 +26,7 @@ public class CommandeController {
         this.userService = userService;
     }
 
+    @Operation(summary = "Index",description = "Return List of all Commandes")
     @GetMapping("/")
     public ResponseEntity<List<Commande>> index(){
         List<Commande> l = commandeService.findAll();

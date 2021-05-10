@@ -4,6 +4,8 @@ import com.ipsas.WebService.Enums.Role;
 import com.ipsas.WebService.Models.Commande;
 import com.ipsas.WebService.Models.Florist;
 import com.ipsas.WebService.Services.FloristService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/florists")
+@Tag(name = "Florists Controller",description = "Full CRUD for Florist Model")
 public class FloristController {
     private final FloristService floristService;
 
@@ -20,6 +23,8 @@ public class FloristController {
     public FloristController(FloristService floristService) {
         this.floristService = floristService;
     }
+
+    @Operation(summary = "Index",description = "Return List of all Florists")
     @GetMapping("/")
     public ResponseEntity<List<Florist>> index(){
         List<Florist> l = floristService.findAll();

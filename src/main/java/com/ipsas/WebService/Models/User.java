@@ -3,6 +3,10 @@ package com.ipsas.WebService.Models;
 import com.ipsas.WebService.Enums.Role;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -12,10 +16,16 @@ import java.io.Serializable;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
+    @Size(min = 0 , max = 20)
     private String firstname;
+    @Size(min = 0 , max = 20)
     private String lastname;
+    @Size(min = 0 , max = 20)
+    @Column(unique = true)
     private String username;
+    @Size(min = 6)
     private String password;
     private Role role;
 

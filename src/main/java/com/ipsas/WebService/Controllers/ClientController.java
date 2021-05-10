@@ -7,8 +7,11 @@ import com.ipsas.WebService.Models.User;
 import com.ipsas.WebService.Services.ClientService;
 import com.ipsas.WebService.Services.UserService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.extensions.Extension;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
@@ -18,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/clients")
-@ApiResponse(description = "Test")
+@Tag(name = "Clients Controller",description = "Full CRUD for Client Model")
 public class ClientController {
     private final ClientService clientService;
     private final UserService userService;
@@ -27,6 +30,8 @@ public class ClientController {
         this.clientService = clientService;
         this.userService = userService;
     }
+
+    @Operation(summary = "Index",description = "Return List of all Clients")
     @GetMapping("/")
     public ResponseEntity<List<Client>> index(){
         List<Client> l = clientService.findAll();
